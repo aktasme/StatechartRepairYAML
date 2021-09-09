@@ -1,0 +1,9 @@
+@startuml
+title simple statechart
+state "root" as root {
+  state "process 2" as process2 {
+  }
+  state "process 1" as process1 {
+  }
+}
+@enduml
