@@ -1,9 +1,13 @@
 @startuml
 title simple statechart
 state "root" as root {
-  state "process 2" as process2 {
+  [*] --> A
+  state "C" as C {
   }
-  state "process 1" as process1 {
+  state "A" as A {
+    state "B" as B {
+      B --> C : evBC
+    }
   }
 }
 @enduml
