@@ -5,5 +5,5 @@ class SRCommonLog:
     def toPrintableString(self):
         return ""
 
-    def srprint(self):
+    def print(self):
         print(self.toPrintableString())    

@@ -1,0 +1,14 @@
+statechart:
+  name: Missing Event
+  root state:
+    initial: A
+    name: root
+    states:
+    - name: B
+      transitions:
+      - guard: x == true
+        target: A
+    - name: A
+      transitions:
+      - event: evAB
+        target: B

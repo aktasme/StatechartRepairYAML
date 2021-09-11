@@ -1,0 +1,18 @@
+statechart:
+  name: Unreachable State
+  root state:
+    initial: A
+    name: root
+    states:
+    - name: D
+      transitions:
+      - event: evDB
+        target: B
+    - name: C
+    - name: B
+    - name: A
+      transitions:
+      - event: evAB
+        target: B
+      - event: evAC
+        target: C

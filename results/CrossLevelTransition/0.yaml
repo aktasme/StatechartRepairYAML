@@ -1,0 +1,13 @@
+statechart:
+  name: Cross Level Transition
+  root state:
+    initial: A
+    name: root
+    states:
+    - name: C
+    - name: A
+      states:
+      - name: B
+        transitions:
+        - event: evBC
+          target: C

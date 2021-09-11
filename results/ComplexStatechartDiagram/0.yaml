@@ -1,0 +1,46 @@
+statechart:
+  name: Unreachable State
+  root state:
+    initial: A
+    name: root
+    states:
+    - name: F
+      transitions:
+      - event: evFE
+        target: E
+    - name: E
+      transitions:
+      - event: evED
+        target: D
+    - name: D
+      transitions:
+      - event: evDA
+        target: A
+    - name: C
+      transitions:
+      - event: evCD
+        target: D
+      - event: evCE
+        target: E
+      - event: evCF
+        target: F
+    - name: B
+      transitions:
+      - event: evBC
+        target: C
+      - event: evBD
+        target: D
+      - event: evBE
+        target: E
+      - event: evBF
+        target: F
+    - name: A
+      transitions:
+      - event: evAB
+        target: B
+      - event: evAD
+        target: D
+      - event: evAE
+        target: E
+      - event: evAF
+        target: F
