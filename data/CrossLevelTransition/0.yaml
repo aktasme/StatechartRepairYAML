@@ -1,5 +1,5 @@
 statechart:
-  name: simple statechart
+  name: Cross Level Transition
   root state:
     name: root
     initial: A

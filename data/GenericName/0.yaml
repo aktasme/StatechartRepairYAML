@@ -1,0 +1,16 @@
+statechart:
+  name: Generic Name
+  root state:
+    name: FOVAdjustment
+    initial: InitialFOV
+    states:
+      - name: InitialFOV
+        transitions:
+          - target: state_659
+            event: evFindNearestFOV
+      - name: state_659
+        transitions:
+          - target: state_660
+            event: evFinishFOVAdjustment
+      - name: state_660
+
