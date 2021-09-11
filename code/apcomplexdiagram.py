@@ -8,4 +8,13 @@ class APComplexDiagram(AntiPatternBase):
         self.complexity = 0.0
 
     def control(self, statechart: SRStatechart):
-        print('{} #S:{} #T:{}'.format(statechart.name, len(statechart.states), len(statechart.transitions))) 
+        bReturn = False
+        statechart.complexity= len(statechart.transitions) / len(statechart.states)
+
+        if statechart.complexity >= self.COMPLEXITY_THRESHOLD:
+            bReturn = True
+            statechart.isComplex = True
+
+        print('{} #S:{} #T:{} Complexity:{}'.format(statechart.name, len(statechart.states), len(statechart.transitions), statechart.complexity)) 
+        return bReturn
+            
