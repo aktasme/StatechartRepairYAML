@@ -1,5 +1,5 @@
 from antipatternbase import AntiPatternBase
-from srstatechart import SRStatechart
+from statechart import Statechart
 
 class APComplexDiagram(AntiPatternBase):
     def __init__(self):
@@ -7,14 +7,13 @@ class APComplexDiagram(AntiPatternBase):
         self.COMPLEXITY_THRESHOLD = 2.0
         self.complexity = 0.0
 
-    def control(self, statechart: SRStatechart):
+    def control(self, statechart: Statechart):
         bReturn = False
-        statechart.complexity= len(statechart.transitions) / len(statechart.states)
+        statechart.complexity= len(statechart.statechart.transitions) / len(statechart.statechart.states)
 
         if statechart.complexity >= self.COMPLEXITY_THRESHOLD:
             bReturn = True
             statechart.isComplex = True
 
-        print('{} #S:{} #T:{} Complexity:{}'.format(statechart.name, len(statechart.states), len(statechart.transitions), statechart.complexity)) 
         return bReturn
             

@@ -1,4 +1,4 @@
-class SRCommonLog:
+class CommonLog:
     def __init__(self):
         self.printableString = ""
 

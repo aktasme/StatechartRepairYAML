@@ -1,14 +1,14 @@
-from srcommonlog import SRCommonLog
-from srstatechart import SRStatechart
+import commonlog
+from statechart import Statechart
 
-class AntiPatternBase(SRCommonLog):
+class AntiPatternBase(commonlog.CommonLog):
     def __init__(self):
         self.name = ""
 
-    def control(statechart: SRStatechart):
+    def control(statechart: Statechart):
         return False
 
-    def repair(statechart: SRStatechart):
+    def repair(statechart: Statechart):
         return False
 
     def toPrintableString(self):
