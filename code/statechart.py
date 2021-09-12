@@ -1,4 +1,5 @@
-import sismic.model 
+import sismic.model
+import sismic.io
 from pathlib import Path
 from commonlog import CommonLog
 
@@ -13,12 +14,14 @@ class Statechart(CommonLog):
         self.targetFile = self.targetDirectory.joinpath(sourceFile.parts[2])
         self.name = self.statechart.name
         
-        self.complexity = 0.0
-        self.isComplex = False
         self.hasCrossLevelTransition = False
         self.hasMissingEvent = False
         self.hasGenericName = False
-
+        self.hasUnreachableState = False
+        self.hasCascadedCondition =False
+        self.hasIsolatedState = False
+        self.isComplex = False
+        self.complexity = 0.0
 
     def export(self):
         sismic.io.export_to_yaml(self.statechart, self.targetFile)
@@ -28,5 +31,9 @@ class Statechart(CommonLog):
         antiPatternProperties = ' | {}'.format(CommonLog.toPlusMinusString(self, self.hasCrossLevelTransition))
         antiPatternProperties += ' {}'.format(CommonLog.toPlusMinusString(self, self.hasMissingEvent))
         antiPatternProperties += ' {}'.format(CommonLog.toPlusMinusString(self, self.hasGenericName))
+        antiPatternProperties += ' {}'.format(CommonLog.toPlusMinusString(self, self.hasUnreachableState))
+        antiPatternProperties += ' {}'.format(CommonLog.toPlusMinusString(self, self.hasCascadedCondition))
+        antiPatternProperties += ' {}'.format(CommonLog.toPlusMinusString(self, self.hasIsolatedState))
+        antiPatternProperties += ' {}'.format(CommonLog.toPlusMinusString(self, self.isComplex))
         return mainProperties + antiPatternProperties
  

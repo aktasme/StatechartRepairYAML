@@ -1,9 +1,10 @@
-import sismic.io
-import sismic.model
 from statechart import Statechart
 from apcrossleveltransition import APCrossLevelTransition
 from apmissingevent import APMissingEvent
 from apgenericname import APGenericName
+from apunreachablestate import APUnreachableState
+from apcascadedcondition import APCascadedCondition
+from apisolatedstate import APIsolatedState
 from apcomplexdiagram import APComplexDiagram
 from pathlib import Path
 
@@ -18,12 +19,19 @@ def createAntiPatterns():
     antiPattern = APGenericName()
     antiPatterns.append(antiPattern)
     
-    
+    antiPattern = APUnreachableState()
+    antiPatterns.append(antiPattern)
+
+    antiPattern = APCascadedCondition()
+    antiPatterns.append(antiPattern)
+
+    antiPattern = APIsolatedState()
+    antiPatterns.append(antiPattern)
+   
     antiPattern = APComplexDiagram()
     antiPatterns.append(antiPattern)
 
     
-
 antiPatterns = []
 createAntiPatterns()
 

@@ -1,8 +1,7 @@
 from antipatternbase import AntiPatternBase
 from statechart import Statechart
-import Levenshtein
 
-class APGenericName(AntiPatternBase):
+class APCascadedCondition(AntiPatternBase):
     def __init__(self):
         AntiPatternBase.__init__(self, __class__.__name__)
         self.transitionsFound = []
@@ -10,14 +9,13 @@ class APGenericName(AntiPatternBase):
     def control(self, statechart: Statechart):
         bReturn = False
 
-        for state in statechart.statechart.states:           
-            distance = Levenshtein.distance("state_", state)
-            if distance <= 3:
-                self.hitCountState += 1
+        for transition in statechart.statechart.transitions:
+             if False:
                 bReturn = True
-
-        if bReturn:
+                self.hitCountTransition += 1
+        
+        if bReturn == True:
             self.hitCountStatechart += 1
-            statechart.hasGenericName = True
+            statechart.hasCascadedCondition = True
         
         return bReturn
