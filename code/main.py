@@ -1,17 +1,28 @@
 import sismic.io
 import sismic.model
 from statechart import Statechart
-from apcomplexdiagram import APComplexDiagram
 from apcrossleveltransition import APCrossLevelTransition
+from apmissingevent import APMissingEvent
+from apgenericname import APGenericName
+from apcomplexdiagram import APComplexDiagram
 from pathlib import Path
 
+# Create Anti-pattern objects
 def createAntiPatterns():
-    antiPattern = APComplexDiagram()
-    antiPatterns.append(antiPattern)
-
     antiPattern = APCrossLevelTransition()
     antiPatterns.append(antiPattern)
 
+    antiPattern = APMissingEvent()
+    antiPatterns.append(antiPattern)
+    
+    antiPattern = APGenericName()
+    antiPatterns.append(antiPattern)
+    
+    
+    antiPattern = APComplexDiagram()
+    antiPatterns.append(antiPattern)
+
+    
 
 antiPatterns = []
 createAntiPatterns()

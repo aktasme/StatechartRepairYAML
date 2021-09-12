@@ -2,8 +2,11 @@ import commonlog
 from statechart import Statechart
 
 class AntiPatternBase(commonlog.CommonLog):
-    def __init__(self):
-        self.name = ""
+    def __init__(self, name):
+        self.name = name
+        self.hitCountStatechart = 0
+        self.hitCountTransition = 0
+        self.hitCountState = 0
 
     def control(statechart: Statechart):
         return False

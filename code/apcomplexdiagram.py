@@ -3,7 +3,7 @@ from statechart import Statechart
 
 class APComplexDiagram(AntiPatternBase):
     def __init__(self):
-        self.name = __class__.__name__
+        AntiPatternBase.__init__(self, __class__.__name__)
         self.COMPLEXITY_THRESHOLD = 2.0
         self.complexity = 0.0
 
