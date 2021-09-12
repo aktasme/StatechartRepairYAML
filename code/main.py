@@ -8,6 +8,8 @@ from apisolatedstate import APIsolatedState
 from apcomplexdiagram import APComplexDiagram
 from pathlib import Path
 
+antiPatterns = []
+
 # Create Anti-pattern objects
 def createAntiPatterns():
     antiPattern = APCrossLevelTransition()
@@ -31,8 +33,7 @@ def createAntiPatterns():
     antiPattern = APComplexDiagram()
     antiPatterns.append(antiPattern)
 
-    
-antiPatterns = []
+# Start with creating patterns    
 createAntiPatterns()
 
 # Find all YAML Statechart files in data folder
@@ -45,7 +46,6 @@ for sourceFile in Path('data').rglob('*.yaml'):
 
     # Print formatted statechart results
     statechart.print()
+
+    # Export repaired statecharts to results folder
     statechart.export()
-
-# export_to_plantuml(statechart,filepath='d:\GitHub\StatechartRepairYAML\data\simple.txt')
-
