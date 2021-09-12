@@ -13,8 +13,8 @@ class APCrossLevelTransition(AntiPatternBase):
             sourceDepth = statechart.statechart.depth_for(transition.source)
             targetDepth = statechart.statechart.depth_for(transition.target)
 
-            if sourceDepth > targetDepth:
-                self.transitionsFound.append(transition)
+            if sourceDepth - targetDepth == 1:
+                self.repair(statechart, transition)
                 bReturn = True
                 self.hitCountTransition += 1
         
@@ -23,3 +23,8 @@ class APCrossLevelTransition(AntiPatternBase):
             statechart.hasCrossLevelTransition = True
         
         return bReturn
+
+    def repair(self, statechart: Statechart, transition):
+        sourceParentString = statechart.statechart.parent_for(transition.source)
+        statechart.statechart.rotate_transition(transition, new_source=sourceParentString)         
+        

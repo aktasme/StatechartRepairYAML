@@ -8,10 +8,10 @@ class AntiPatternBase(commonlog.CommonLog):
         self.hitCountTransition = 0
         self.hitCountState = 0
 
-    def control(statechart: Statechart):
+    def control(self, statechart: Statechart):
         return False
 
-    def repair(statechart: Statechart):
+    def repair(self, statechart: Statechart):
         return False
 
     def toPrintableString(self):

@@ -9,6 +9,6 @@ statechart:
       name: A
       states:
       - name: B
-        transitions:
-        - event: evBC
-          target: C
+      transitions:
+      - event: evBC
+        target: C

@@ -1,0 +1,14 @@
+@startuml
+title Cross Level Transition
+state "root" as root {
+  [*] --> A
+  state "C" as C {
+  }
+  state "A" as A {
+    [*] --> B
+    A --> C : evBC
+    state "B" as B {
+    }
+  }
+}
+@enduml

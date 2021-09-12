@@ -12,6 +12,7 @@ class Statechart(CommonLog):
         self.targetDirectory = Path('results').joinpath(sourceFile.parts[1])
         self.targetDirectory.mkdir(parents=True, exist_ok=True)
         self.targetFile = self.targetDirectory.joinpath(sourceFile.parts[2])
+        self.plantumlFile = str(self.targetFile) + '.plant'
         self.name = self.statechart.name
         
         self.hasCrossLevelTransition = False
@@ -45,6 +46,7 @@ class Statechart(CommonLog):
 
     def export(self):
         sismic.io.export_to_yaml(self.statechart, self.targetFile)
+        sismic.io.export_to_plantuml(self.statechart, self.plantumlFile)
 
     def toPrintableString(self):
         mainProperties = '{:<30} {:<4} {:<4} {:.2f}'.format(self.name, len(self.statechart.states), len(self.statechart.transitions), self.complexity)

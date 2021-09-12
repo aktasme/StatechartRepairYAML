@@ -1,0 +1,20 @@
+@startuml
+title Isolated State
+state "root" as root {
+  [*] --> A
+  state "D" as D {
+    D --> C
+  }
+  state "C" as C {
+    C : **entry** / x = 1;
+  }
+  state "B" as B {
+    B --> C
+  }
+  state "A" as A {
+    A : **entry** / x = 0;
+    A --> B : evAB
+    A --> D
+  }
+}
+@enduml
