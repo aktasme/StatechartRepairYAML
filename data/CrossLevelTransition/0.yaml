@@ -5,6 +5,7 @@ statechart:
     initial: A
     states:
       - name: A
+        initial: B
         states:
           - name: B
             transitions:

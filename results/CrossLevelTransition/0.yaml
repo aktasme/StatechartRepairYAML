@@ -5,7 +5,8 @@ statechart:
     name: root
     states:
     - name: C
-    - name: A
+    - initial: B
+      name: A
       states:
       - name: B
         transitions:

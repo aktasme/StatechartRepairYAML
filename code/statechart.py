@@ -18,10 +18,30 @@ class Statechart(CommonLog):
         self.hasMissingEvent = False
         self.hasGenericName = False
         self.hasUnreachableState = False
-        self.hasCascadedCondition =False
+        self.hasCascadedCondition = False
         self.hasIsolatedState = False
         self.isComplex = False
         self.complexity = 0.0
+
+        self.initialize()
+
+    def initialize(self):
+        for stateString in self.statechart.states:
+            state = self.statechart.state_for(stateString)
+            state.isRoot = False
+            state.isDefault = False
+
+        root = self.statechart.state_for(self.statechart.root)
+        root.isRoot = True
+
+        for stateString in self.statechart.states:
+            state = self.statechart.state_for(stateString)
+            if isinstance(state, sismic.model.CompoundState) and state.initial:
+                initialState = self.statechart.state_for(state.initial)
+                initialState.isDefault = True
+
+        for stateString in self.statechart.states:
+            state = self.statechart.state_for(stateString)
 
     def export(self):
         sismic.io.export_to_yaml(self.statechart, self.targetFile)

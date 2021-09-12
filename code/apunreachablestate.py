@@ -9,8 +9,12 @@ class APUnreachableState(AntiPatternBase):
     def control(self, statechart: Statechart):
         bReturn = False
 
-        for state in statechart.statechart.states:                     
-            if False:
+        for stateString in statechart.statechart.states:
+            state = statechart.statechart.state_for(stateString)
+            isRoot = state.isRoot
+            isDefault = state.isDefault
+            inTransitions = statechart.statechart.transitions_to(stateString)                   
+            if not isRoot and not isDefault and not inTransitions:
                 self.hitCountState += 1
                 bReturn = True
 
