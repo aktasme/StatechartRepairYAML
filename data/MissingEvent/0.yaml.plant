@@ -1,0 +1,12 @@
+@startuml
+title Missing Event
+state "root" as root {
+  [*] --> A
+  state "B" as B {
+    B --> A : [x == true]
+  }
+  state "A" as A {
+    A --> B : evAB
+  }
+}
+@enduml

@@ -1,3 +1,4 @@
+from sismic.model.elements import Transition
 from antipatternbase import AntiPatternBase
 from statechart import Statechart
 
@@ -16,7 +17,8 @@ class APIsolatedState(AntiPatternBase):
             outTransitions = statechart.statechart.transitions_from(stateString)
             bTransitionsEmpty = self.isTransitionsEmpty(statechart, inTransitions + outTransitions)
                                 
-            if not isRoot and bTransitionsEmpty and not state.on_entry and not state.on_exit:
+            if not isRoot and bTransitionsEmpty and not state.on_entry and not state.on_exit and inTransitions and outTransitions:
+                self.repair(statechart, state, inTransitions, outTransitions)
                 self.hitCountState += 1
                 bReturn = True
 
@@ -26,10 +28,22 @@ class APIsolatedState(AntiPatternBase):
         
         return bReturn
 
+    def repair(self, statechart: Statechart, state, inTransitions, outTransitions):
+        for inTransition in inTransitions:
+            for outTransition in outTransitions:
+                sourceState = inTransition.source
+                targetState = outTransition.target
+                newTransition = Transition(sourceState, targetState)
+                statechart.statechart.add_transition(newTransition)
+                statechart.statechart.remove_transition(inTransition)
+                statechart.statechart.remove_transition(outTransition)
+                statechart.statechart.remove_state(state.name)
+
     def isTransitionsEmpty(self, statechart: Statechart, transitions):
-        bReturn = False
+        bReturn = True
         for transition in transitions:
-            if not transition.event and not transition.guard and not transition.action:
-                bReturn = True
+            if transition.event or transition.guard or transition.action:
+                bReturn = False
+                break
         
         return bReturn

@@ -1,0 +1,17 @@
+@startuml
+title Unreachable State
+state "root" as root {
+  [*] --> A
+  state "D" as D {
+    D --> B : evDB
+  }
+  state "C" as C {
+  }
+  state "B" as B {
+  }
+  state "A" as A {
+    A --> B : evAB
+    A --> C : evAC
+  }
+}
+@enduml

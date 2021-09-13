@@ -1,13 +1,14 @@
 @startuml
-title Isolated State
+title Cross Level Transition
 state "root" as root {
   [*] --> A
   state "C" as C {
-    C : **entry** / x = 1;
   }
   state "A" as A {
-    A : **entry** / x = 0;
-    A --> C
+    [*] --> B
+    state "B" as B {
+      B --> C : evBC
+    }
   }
 }
 @enduml

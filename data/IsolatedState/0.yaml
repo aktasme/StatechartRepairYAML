@@ -7,12 +7,7 @@ statechart:
       - name: A
         on entry: x = 0;
         transitions:
-          - target: B
-            event: evAB
           - target: D
-      - name: B
-        transitions:
-          - target: C
       - name: C
         on entry: x = 1;
       - name: D

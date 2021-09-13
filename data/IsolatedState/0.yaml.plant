@@ -2,12 +2,15 @@
 title Isolated State
 state "root" as root {
   [*] --> A
+  state "D" as D {
+    D --> C
+  }
   state "C" as C {
     C : **entry** / x = 1;
   }
   state "A" as A {
     A : **entry** / x = 0;
-    A --> C
+    A --> D
   }
 }
 @enduml

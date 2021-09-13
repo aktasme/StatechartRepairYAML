@@ -4,17 +4,9 @@ statechart:
     initial: A
     name: root
     states:
-    - name: D
-      transitions:
-      - target: C
     - name: C
       on entry: x = 1;
-    - name: B
-      transitions:
-      - target: C
     - name: A
       on entry: x = 0;
       transitions:
-      - event: evAB
-        target: B
-      - target: D
+      - target: C

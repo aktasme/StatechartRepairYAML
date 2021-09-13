@@ -8,13 +8,17 @@ class Statechart(CommonLog):
     def __init__(self, sourceFile):
         CommonLog.__init__(self)
         self.sourceFile = sourceFile
+        self.sorcePlantumlFile = str(sourceFile) + '.plant'
         self.statechart = sismic.io.import_from_yaml(filepath=sourceFile)
         assert isinstance(self.statechart, sismic.model.Statechart)
         self.targetDirectory = Path('results').joinpath(sourceFile.parts[1])
         self.targetDirectory.mkdir(parents=True, exist_ok=True)
         self.targetFile = self.targetDirectory.joinpath(sourceFile.parts[2])
-        self.plantumlFile = str(self.targetFile) + '.plant'
+        self.targetPlantumlFile = str(self.targetFile) + '.plant'
         self.name = self.statechart.name
+
+        sismic.io.export_to_plantuml(self.statechart, self.sorcePlantumlFile)
+        subprocess.call(['java', '-jar', 'plantuml.jar', self.sorcePlantumlFile])
         
         self.hasCrossLevelTransition = False
         self.hasMissingEvent = False
@@ -47,8 +51,8 @@ class Statechart(CommonLog):
 
     def export(self):
         sismic.io.export_to_yaml(self.statechart, self.targetFile)
-        sismic.io.export_to_plantuml(self.statechart, self.plantumlFile)
-        subprocess.call(['java', '-jar', 'plantuml.jar', self.plantumlFile])
+        sismic.io.export_to_plantuml(self.statechart, self.targetPlantumlFile)
+        subprocess.call(['java', '-jar', 'plantuml.jar', self.targetPlantumlFile])
 
     def toPrintableString(self):
         mainProperties = '{:<30} {:<4} {:<4} {:.2f}'.format(self.name, len(self.statechart.states), len(self.statechart.transitions), self.complexity)
