@@ -4,7 +4,6 @@ from statechart import Statechart
 class APCrossLevelTransition(AntiPatternBase):
     def __init__(self):
         AntiPatternBase.__init__(self, __class__.__name__)
-        self.transitionsFound = []
 
     def control(self, statechart: Statechart):
         bReturn = False

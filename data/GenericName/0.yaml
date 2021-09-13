@@ -10,7 +10,7 @@ statechart:
             event: evFindNearestFOV
       - name: state_659
         transitions:
-          - target: state_660
+          - target: EndFOV
             event: evFinishFOVAdjustment
-      - name: state_660
+      - name: EndFOV
 

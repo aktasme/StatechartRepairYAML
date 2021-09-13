@@ -2,13 +2,13 @@
 title Generic Name
 state "FOVAdjustment" as FOVAdjustment {
   [*] --> InitialFOV
-  state "state_660" as state660 {
-  }
-  state "state_659" as state659 {
-    state659 --> state660 : evFinishFOVAdjustment
+  state "EndFOV" as EndFOV {
   }
   state "InitialFOV" as InitialFOV {
-    InitialFOV --> state659 : evFindNearestFOV
+    InitialFOV --> InitialFOVevFindNearestFOV : evFindNearestFOV
+  }
+  state "InitialFOV_evFindNearestFOV" as InitialFOVevFindNearestFOV {
+    InitialFOVevFindNearestFOV --> EndFOV : evFinishFOVAdjustment
   }
 }
 @enduml
