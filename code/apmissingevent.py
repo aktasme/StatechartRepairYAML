@@ -1,3 +1,4 @@
+from sismic.model.elements import Transition
 from antipatternbase import AntiPatternBase
 from statechart import Statechart
 
@@ -11,7 +12,7 @@ class APMissingEvent(AntiPatternBase):
 
         for transition in statechart.statechart.transitions:
             if not transition.event and transition.guard:
-                self.transitionsFound.append(transition)
+                self.repair(statechart, transition)
                 bReturn = True
                 self.hitCountTransition += 1
         
@@ -20,3 +21,10 @@ class APMissingEvent(AntiPatternBase):
             statechart.hasMissingEvent = True
         
         return bReturn
+
+    def repair(self, statechart: Statechart, transition: Transition):
+        sourceStateString = transition.source
+        targetStateString = transition.target
+        eventString = 'ev' + sourceStateString + 'to' + targetStateString
+        transition.event = eventString
+        transition.guard = ''

@@ -6,7 +6,7 @@ statechart:
     states:
     - name: B
       transitions:
-      - guard: x == true
+      - event: evBtoA
         target: A
     - name: A
       transitions:
