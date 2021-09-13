@@ -4,10 +4,6 @@ statechart:
     initial: A
     name: root
     states:
-    - name: D
-      transitions:
-      - event: evDB
-        target: B
     - name: C
     - name: B
     - name: A

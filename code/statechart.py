@@ -1,5 +1,6 @@
 import sismic.model
 import sismic.io
+import subprocess
 from pathlib import Path
 from commonlog import CommonLog
 
@@ -47,6 +48,7 @@ class Statechart(CommonLog):
     def export(self):
         sismic.io.export_to_yaml(self.statechart, self.targetFile)
         sismic.io.export_to_plantuml(self.statechart, self.plantumlFile)
+        subprocess.call(['java', '-jar', 'plantuml.jar', self.plantumlFile])
 
     def toPrintableString(self):
         mainProperties = '{:<30} {:<4} {:<4} {:.2f}'.format(self.name, len(self.statechart.states), len(self.statechart.transitions), self.complexity)

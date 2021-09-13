@@ -4,7 +4,6 @@ from statechart import Statechart
 class APUnreachableState(AntiPatternBase):
     def __init__(self):
         AntiPatternBase.__init__(self, __class__.__name__)
-        self.transitionsFound = []
 
     def control(self, statechart: Statechart):
         bReturn = False
@@ -15,6 +14,7 @@ class APUnreachableState(AntiPatternBase):
             isDefault = state.isDefault
             inTransitions = statechart.statechart.transitions_to(stateString)                   
             if not isRoot and not isDefault and not inTransitions:
+                self.repair(statechart, stateString)
                 self.hitCountState += 1
                 bReturn = True
 
@@ -23,3 +23,6 @@ class APUnreachableState(AntiPatternBase):
             statechart.hasUnreachableState = True
         
         return bReturn
+
+    def repair(self, statechart: Statechart, stateString):
+        statechart.statechart.remove_state(stateString)
