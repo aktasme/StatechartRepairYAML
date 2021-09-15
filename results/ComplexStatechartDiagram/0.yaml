@@ -1,5 +1,5 @@
 statechart:
-  name: Unreachable State
+  name: Complex Statechart Diagran
   root state:
     initial: A
     name: root

@@ -1,0 +1,14 @@
+@startuml
+title Generic Name
+state "FOVAdjustment" as FOVAdjustment {
+  [*] --> InitialFOV
+  state "EndFOV" as EndFOV {
+  }
+  state "InitialFOV" as InitialFOV {
+    InitialFOV --> InitialFOVevFindNearestFOV : evFindNearestFOV
+  }
+  state "InitialFOV_evFindNearestFOV" as InitialFOVevFindNearestFOV {
+    InitialFOVevFindNearestFOV --> EndFOV : evFinishFOVAdjustment
+  }
+}
+@enduml
